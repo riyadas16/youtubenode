@@ -56,15 +56,14 @@ const loginUser = asyncHandler(async (req, res) => {
       { expiresIn: "1m" }
     );
     res.status(200).json({ accessToken });
-  }
-  else {
+  } else {
     res.status(400);
     throw new Error("Invalid Credentials");
   }
 });
 
-const currentUser = asyncHandler(async (req, res) => {
-  res.json({ msg: "user" });
+const current = asyncHandler(async (req, res) => {
+  res.json(req.user);
 });
 
-module.exports = { registerUser, loginUser, currentUser };
+module.exports = { registerUser, loginUser, current };
